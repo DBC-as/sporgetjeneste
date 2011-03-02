@@ -1,4 +1,5 @@
-Basic build environment for mobile dbc apps.
+# Mobile grænseflader til Spørgetjenesten
+
 
 - `code` - the source of the application
 - `android` - Android build environment, for example `ant debug install` build debug version and installs it on the device or emulator
