@@ -1,6 +1,5 @@
 define(function(require, exports, module) {
-jsonml = require("jsonml");
-console.log(jsonml);
+mui = require("mui");
 
 function genWord() {
     var i, length, s;
@@ -22,47 +21,61 @@ function nextText() {
     return s;
 }
 
-function height(dom) {
-    return document.defaultView.getComputedStyle(dom, "").getPropertyValue("height");
-}
-
-function gId(id) {
-    return document.getElementById(id);
-}
-
-function slidein() {
-    window.scroll(0,0);
-
-    var prev = gId("prev");
-    prev.parentNode.removeChild(prev);
-
-    var current = gId("current");
-    current.setAttribute("id", "prev");
-    //current.style.top = "-" + height(next);
-
-    var next = gId("next");
-    next.setAttribute("id", "current");
-
-    gId("container").style.height = height(next);
-
-    //prev.style.display = "none"
-}
-
 handleClick = function() {
-    next = document.createElement("div");
-    next.setAttribute("id", "next");
-    next.setAttribute("onClick", "handleClick()");
-    next.innerHTML= [ 
-            ["div", {"class": "topbar"}, "Sp\xf8rgetjenesten"], 
-            ["div", {"class": "contentbox"}, nextText()],
-            ["div", {"class": "contentbox"}, nextText()],
-            ["div", {"class": "contentbox"}, nextText()],
-            ["div", {"class": "topbar"}, "Hello", "world"]
-        ].map(jsonml.toXml).join('');
-    var current = gId("current");
-    gId("container").insertBefore(next, current);
-    current.style.top = "-" + height(next);
-    setTimeout(slidein, 0);
+    mui.showPage(["page", {"title": "Sp\xf8rgetjenesten"}, 
+            ["div", nextText()],
+            ["div", nextText()],
+            ["div", nextText()],
+            ["div", nextText()]
+            ]);
 }
+
+var pages = {
+    main: ["page", {title: "Sp\xf8rgetjenesten"},
+        ["inputarea", {name: "question", label: "Mit sp\xf8rgsm\xa5l"}],
+        ["choice", {name: "deadline", label: "Tidsfrist"},
+            ["option", {value: "-1"}, "ingen"],
+            ["option", {value: "2"}, "2 timer"],
+            ["option", {value: "24"}, "24 timer"],
+            ["option", {value: "48"}, "2 dage"],
+            ["option", {value: "168"}, "1 uger"]
+        ],
+        ["choice", {name: "use", label: "Svaret skal bruges til"},
+            ["option", {value: "personal"}, "Almen interesse eller hobby"],
+            ["option", {value: "business"}, "Erhverv"],
+            ["option", {value: "school1"}, "Folkeskole"],
+            ["option", {value: "school2"}, "Gymnasium, EUC, VUC, SOSU eller anden kort videreg\xa51ende uddannelse"],
+            ["option", {value: "school3"}, "Mellemlang eller lang videregående uddannelse"],
+            ["option", {value: "school4"}, "Universitetsuddannelse eller forskning"]
+        ],
+        ["button", {id: "ask"}, "Sp\xf8rg"]
+    ],
+    ask: ["page", {title: "Sender sp\xf8rgsm\xa5l"}, 
+        ["div", "spørgsmålet afsendt, du vil få svar per mail"],
+        ["button", {id: "foo"}, "knap 1"],
+        ["button", {id: "bar"}, "knap 2"],
+        ["button", {id: "main"}, "main"]
+    ],
+    foo: ["page"
+        ["div", "1"],
+        ["button", {id: "bar"}, "knap 2"],
+    ],
+    bar: ["page", {title: "2"},
+        ["div", "2"],
+        ["button", {id: "bar"}, "knap 2"],
+        ["button", {id: "main"}, "main"]
+    ]
+};
+function dispatch(name, args) {
+    mui.showPage(pages[name]);
+}
+function main() {
+    mui.setDispatch(dispatch);
+    dispatch("main");
+}
+
+require.ready(function() {
+    main();
+});
 
 });
