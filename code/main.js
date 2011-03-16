@@ -77,8 +77,8 @@ function dispatch(name, args) {
             ["option", {value: "personal"}, "Almen interesse eller hobby"],
             ["option", {value: "business"}, "Erhverv"],
             ["option", {value: "school1"}, "Folkeskole"],
-            ["option", {value: "school2"}, "Gymnasium, EUC, VUC, SOSU eller anden kort videreg\xa51ende uddannelse"],
-            ["option", {value: "school3"}, "Mellemlang eller lang videregående uddannelse"],
+            ["option", {value: "school2"}, "Gymnasium, eller lignende"],
+            ["option", {value: "school3"}, "Laengere videregaaende uddannelse"],
             ["option", {value: "school4"}, "Universitetsuddannelse eller forskning"]
         ],
         ["button", {id: "ask"}, "Sp\xf8rg"]

@@ -6,17 +6,18 @@ sprint 1
 
 primary scrum items
 
-- show page
-- text widget
 - choice widget
 - mobile framework 0,5
 - textarea widget
 - hig iphone
-- business logic mockup
 - line input widget
 - webservice calls
 - event callback
 - button widget
+
+- business logic mockup
+- show page
+- text widget
 
 secondary dependencies/polish
 
