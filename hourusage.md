@@ -2,18 +2,18 @@ Used hours approximately on scrum tasks since mid-March. This also includes chan
 
 sprint 1
 
-- meetings and administrative stuff 1,5
+- meetings and administrative stuff 2
 
 primary scrum items
 
-- choice widget
-- mobile framework 0,5
-- textarea widget
+- choice widget 1
+- mobile framework 1,5
+- textarea widget 1
 - hig iphone
-- line input widget
+- line input widget 0,5
 - webservice calls
 - event callback
-- button widget
+- button widget 0,5
 
 - business logic mockup
 - show page
