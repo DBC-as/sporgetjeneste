@@ -6,14 +6,14 @@ sprint 1
 
 primary scrum items
 
-- choice widget 1
+- choice widget 1.5
 - mobile framework 1,5
-- textarea widget 1
+- textarea widget 1,5
 - hig iphone
 - line input widget 0,5
 - webservice calls
-- event callback
-- button widget 0,5
+- event callback 1
+- button widget 1
 
 - business logic mockup
 - show page
