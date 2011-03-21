@@ -20,6 +20,7 @@ function muiCallback(mui) {
             ["button", {id: "ask"}, "Sp\xf8rg"]
         ]);
     }, "ask": function() {
+        mui.loading();
         mui.callJsonpWebservice("http://metode.dbc.dk/~fvs/OpenLibrary/OpenQuestion/trunk/server.php", "callback", {
                 action: "createQuestion",
                 agencyId: "150024",
