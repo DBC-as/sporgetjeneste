@@ -20,11 +20,20 @@ function muiCallback(mui) {
             ["button", {id: "ask"}, "Sp\xf8rg"]
         ]);
     }, "ask": function() {
-        mui.showPage(["page", {title: "Sp\xf8rgetjenesten"},
-            ["text", "Sp\xf8rgsm\xe5l afsendt. Du vil f\xe5 svar indenfor de n\u00e6ste ", mui.form.deadline || "[ERROR: no mui.form.deadline]", " timer."],
-            ["button", {id: "start"}, "Nyt sp\xf8rgsm\xe5l"]
-        ]);
+        mui.callJsonpWebservice("http://metode.dbc.dk/~fvs/OpenLibrary/OpenQuestion/trunk/server.php", "callback", {
+                action: "createQuestion",
+                agencyId: "150024",
+                qandaServiceName: "Biblioteksvagten",
+                questionContent: mui.form.question,
+                questionDeadline: mui.form.deadline,
+                questionUsage: mui.form.use,
+                outputType: "json"}, function(result) {
+                    mui.showPage(["page", {title: "Sp\xf8rgetjenesten"},
+                      ["text", "Svar: ", result.createQuestionResponse.questionReceipt.$],
+                      ["text", "Sp\xf8rgsm\xe5l afsendt. Du vil f\xe5 svar indenfor de n\u00e6ste ", mui.form.deadline, " timer."],
+                      ["button", {id: "start"}, "Nyt sp\xf8rgsm\xe5l"]
+                    ]);
+                });
     }})[mui.event]();
-
-
 }
+
