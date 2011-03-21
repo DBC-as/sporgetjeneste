@@ -20,6 +20,11 @@ function muiCallback(mui) {
             ["inputarea", {name: "email", label: "Min emailadresse"}],
             ["button", {id: "ask"}, "Sp\xf8rg"]
         ]);
+    }, "settings": function() {
+       mui.showPage(["page", {title: "Indstillinger"},
+         ["inputarea", {name: "email", label: "Min emailadresse"}],
+         ["inputarea", {name: "mobile", label: "Mit mobilnummer"}],
+       ]);
     }, "ask": function() {
         mui.loading();
         var deadline = "";
@@ -40,12 +45,12 @@ function muiCallback(mui) {
                 userEmail: mui.form.email,
                 outputType: "json"}, function(result) {
                   if (result.createQuestionResponse.questionReceipt.$ === "Ack") {
-                    mui.showPage(["page", {title: "Sp\xf8rgetjenesten"}, 
+                    mui.showPage(["page", {title: "Sp\xf8rg biblioteket"}, 
                       ["text", "Sp\xf8rgsm\xe5let er afleveret. Du vil f\xe5 svar", deadline, email, "."], 
                       ["button", {id: "start"}, "Nyt sp\xf8rgsm\xe5l"]
                     ]);
                   } else {
-                    mui.showPage(["page", {title: "Sp\xf8rgetjenesten"}, 
+                    mui.showPage(["page", {title: "Sp\xf8rg biblioteket"}, 
                       ["text", "Noget gik desv\u00e6rre galt, pr\xf8v igen"], 
                       ["button", {id: "start"}, "Nyt sp\xf8rgsm\xe5l"]
                     ]);
