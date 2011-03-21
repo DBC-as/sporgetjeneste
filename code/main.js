@@ -21,7 +21,7 @@ function muiCallback(mui) {
         ]);
     }, "ask": function() {
         mui.showPage(["page", {title: "Sp\xf8rgetjenesten"},
-            ["text", "Sp\xf8rgsm\xe5l afsendt. Du vil f\xe5 svar indenfor de n\u00e6ste ", mui.form.deadline, " timer."],
+            ["text", "Sp\xf8rgsm\xe5l afsendt. Du vil f\xe5 svar indenfor de n\u00e6ste ", mui.form.deadline || "[ERROR: no mui.form.deadline]", " timer."],
             ["button", {id: "start"}, "Nyt sp\xf8rgsm\xe5l"]
         ]);
     }})[mui.event]();
