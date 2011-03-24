@@ -1,3 +1,7 @@
+require("xmodule").def("main",function(){
+
+require("muiApp").setMain(main);
+
 function skalUdfyldes(s) {
     return s.length>0 || "Skal udfyldes.";
 }
@@ -88,3 +92,4 @@ function ask(mui) {
         });
 }
 
+});
