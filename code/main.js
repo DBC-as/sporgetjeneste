@@ -1,10 +1,8 @@
 require("xmodule").def("main",function(){
-
 require("mui").setMain(main);
 
 function main(mui) {
-  mui.showPage(
-    ["page", {title: "Sp\xf8rg biblioteket"},
+  mui.showPage(["page", {title: "Sp\xf8rg biblioteket"},
       ["section",
         ["input", {type: "textbox", name: "question", label: "Mit sp\xf8rgsm\xe5l"}],
         ["choice", {name: "deadline"},
@@ -33,22 +31,18 @@ function main(mui) {
 
 function ask(mui) {     
   mui.loading();
-
   var deadline = "";
   if (mui.form.deadline !== "-1") {
     deadline = " indenfor de n\xe6ste " + mui.form.deadline + " timer";
   }
-
   var answer = "";
   if (mui.form.answer === "email" && mui.form.email !== "") {
     answer = " p\xe5 " + mui.form.email; 
   } else if (mui.form.answer === "sms" && mui.form.mobile !== "") {
     answer = " via sms til " + mui.form.mobile;
   }
-
   mui.callJsonpWebservice("http://didicas.dbc.dk/openquestion.addi.dk/trunk/", "callback", 
-    {
-      action: "createQuestion",
+    { action: "createQuestion",
       agencyId: "150024",
       qandaServiceName: "Biblioteksvagten",
       questionContent: mui.form.question,
@@ -57,22 +51,16 @@ function ask(mui) {
       userEmail: mui.form.email,
       outputType: "json"
     }, function(result) {
-
       if (result.createQuestionResponse.questionReceipt.$ === "Ack") {
-
-        mui.showPage(
-          ["page", {title: "Sp\xf8rg biblioteket"}, 
-            ["section", 
-              ["text", "Sp\xf8rgsm\xe5let er afleveret. Du vil f\xe5 svar", deadline, answer, "."], 
-              ["button", {fn: main}, "Nyt sp\xf8rgsm\xe5l"]]]);
-
+        mui.showPage( ["page", {title: "Sp\xf8rg biblioteket"}, 
+          ["section", 
+            ["text", "Sp\xf8rgsm\xe5let er afleveret. Du vil f\xe5 svar", deadline, answer, "."], 
+            ["button", {fn: main}, "Nyt sp\xf8rgsm\xe5l"]]]);
       } else {
-        mui.showPage(
-          ["page", {title: "Sp\xf8rg biblioteket"}, 
+        mui.showPage( ["page", {title: "Sp\xf8rg biblioteket"}, 
             ["text", "Noget gik desv\xe6rre galt, pr\xf8v igen"], 
             ["button", {fn: main}, "Nyt sp\xf8rgsm\xe5l"]]);
       }
     });
 }
-
 });
