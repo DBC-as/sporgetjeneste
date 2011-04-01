@@ -1,0 +1,25 @@
+- general
+    - page transformation refactoring and code sharing
+    - gui-unit-test
+    - lazy-gui-list for search hits
+    - validate function
+    - https-support
+    - large get-urls
+- meta programming
+    - javascript device config specialisation
+    - code style enforcer and reformatter
+    - html-5-web package with cache info
+- wap-backend
+    - javascript-server with http @ dbc, @sky
+    - http-server-expresso
+    - wurfl
+- midp-backend
+    - cleanup directory
+    - ls2 based on uglifyjs
+    - canvas-based gui
+- html5-backend
+    - separate cascading layout for ios and android
+    - node/httpd+js-server
+    - label on choice... -> as option, but keep label property.
+    - textarea label, on old mac + android
+    - mac developer license dbc
