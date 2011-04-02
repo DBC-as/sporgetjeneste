@@ -5,10 +5,12 @@
     - validate function
     - https-support
     - large get-urls
+    - testdevices midp, symbian, blackberry, palm-pre
 - meta programming
     - javascript device config specialisation
     - code style enforcer and reformatter
     - html-5-web package with cache info
+    - require-lineariser
 - wap-backend
     - javascript-server with http @ dbc, @sky
     - http-server-expresso
@@ -23,3 +25,5 @@
     - label on choice... -> as option, but keep label property.
     - textarea label, on old mac + android
     - mac developer license dbc
+    - mac -> rlo?
+    - android developer license dbc
