@@ -19,6 +19,7 @@
     - cleanup directory
     - ls2 based on uglifyjs
     - canvas-based gui
+    - regular expressions
 - html5-backend
     - separate cascading layout for ios and android
     - node/httpd+js-server
