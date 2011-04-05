@@ -5,6 +5,7 @@ function main(mui) {
   var email = mui.storage.getItem('email');
   var mobile = mui.storage.getItem('mobile');
   var answer = mui.storage.getItem('answer');
+
   if (answer === "choose" || (answer === "email" && email === "") || (answer === "sms" && mobile === "")) {
     settings(mui);
     return;
