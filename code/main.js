@@ -6,7 +6,7 @@ function main(mui) {
   var mobile = mui.storage.getItem('mobile');
   var answer = mui.storage.getItem('answer');
 
-  if (answer === "choose" || (answer === "email" && email === "") || (answer === "sms" && mobile === "")) {
+  if (!answer || answer === "choose" || (answer === "email" && !email) || (answer === "sms" && !mobile)) {
     settings(mui);
     return;
   }
@@ -56,15 +56,7 @@ function saveSettings(mui) {
   var mobile = mui.storage.getItem('mobile');
   mui.storage.setItem('answer', mui.formValue("answer"));
   var answer = mui.storage.getItem('answer');
-  mui.showPage(["page", {title: "Indstillinger"},
-      ["section",
-        ["input", {type: "email", name: "email", label: "Min mailadresse", value: email}],
-        ["input", {type: "tel", name: "mobile", label: "Mit mobilnummer", value: mobile}],
-        ["choice", {name: "answer", value: answer},
-          ["option", {value: "choose"}, "Jeg vil have svar p\xe5..."],
-          ["option", {value: "email"}, "Email"],
-          ["option", {value: "sms"}, "SMS"], ] ],
-        ["button", {fn: main}, "Skriv Sp\xf8rgsmål"] ]);
+  main(mui);
 }
 
 function ask(mui) {     
