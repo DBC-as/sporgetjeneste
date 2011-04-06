@@ -6,7 +6,7 @@ function main(mui) {
   var mobile = mui.storage.getItem('mobile');
   var answer = mui.storage.getItem('answer');
 
-  if (!answer || answer === "choose" || (answer === "email" && !email) || (answer === "sms" && !mobile)) {
+  if (!answer || (answer === "email" && !email) || (answer === "sms" && !mobile)) {
     settings(mui);
     return;
   }
@@ -19,8 +19,7 @@ function main(mui) {
           ["option", {value: "24"}, "24 timer"],
           ["option", {value: "48"}, "2 dage"],
           ["option", {value: "168"}, "1 uge"] ],
-        ["choice", {name: "use"},
-          ["option", {value: "choose"}, "Svaret skal bruges til..."],
+        ["choice", {name: "use", label: "Svaret skal bruges til..."},
           ["option", {value: "personal"}, "Almen interesse"],
           ["option", {value: "business"}, "Erhverv"],
           ["option", {value: "school1"}, "Folkeskole"],
@@ -32,7 +31,6 @@ function main(mui) {
 }
 
 function settings(mui) {
-  mui.loading();
   var email = mui.storage.getItem('email');
   var mobile = mui.storage.getItem('mobile');
   var answer = mui.storage.getItem('answer');
@@ -48,7 +46,6 @@ function settings(mui) {
 }
 
 function saveSettings(mui) {
-  mui.loading();
   mui.storage.setItem('email', mui.formValue("email"));
   var email = mui.storage.getItem('email');
   mui.storage.setItem('mobile', mui.formValue("mobile"));
@@ -61,16 +58,16 @@ function saveSettings(mui) {
 function ask(mui) {     
   mui.loading();
   var deadline = "";
-  if (mui.formValue("deadline") !== "-1" && mui.formValue("deadline") !== "choose" ) {
+  if (mui.formValue("deadline") !== "-1" && mui.formValue("deadline")) {
     deadline = " indenfor de n\xe6ste " + mui.formValue("deadline") + " timer";
   }
   var answer = mui.storage.getItem('answer');
   var email = mui.storage.getItem('email');
   var mobile = mui.storage.getItem('mobile');
   var answerText = "";
-  if (answer === "email" && email !== "") {
+  if (answer === "email" && email) {
     answerText = " p\xe5 " + email; 
-  } else if (answer === "sms" && mobile !== "") {
+  } else if (answer === "sms" && mobile) {
     answerText = " via sms til " + mobile;
   }
   mui.callJsonpWebservice("http://didicas.dbc.dk/openquestion.addi.dk/trunk/", "callback", 
@@ -78,7 +75,6 @@ function ask(mui) {
       agencyId: "150024",
       qandaServiceName: "Biblioteksvagten",
       questionContent: mui.formValue("question"),
-      questionDeadline: mui.formValue("deadline"),
       questionUsage: mui.formValue("use"),
       userEmail: email,
       userMobilePhone: mobile,
