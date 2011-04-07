@@ -56,6 +56,19 @@ function saveSettings(mui) {
 }
 
 function ask(mui) {     
+
+  var hints = {};
+  if(!mui.formValue("question")) {
+    hints.question = "husk at stille et sporgsmaal";
+  }
+  if(!mui.formValue("use")) {
+    hints.use = "udfyld ogsaa dette";
+  }
+  if(Object.keys(hints).length >0) {
+    mui.showPage(mui.setHints(mui.prevPage(), hints));
+    return;
+  }
+
   mui.loading();
   var deadline = "";
   if (mui.formValue("deadline") !== "-1" && mui.formValue("deadline")) {
