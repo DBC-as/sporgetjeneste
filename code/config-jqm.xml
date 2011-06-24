@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="dk.dbc.mui.sporgetjeneste" version="1.0.0">
-<name short="Spørg!">Spørgetjeneste App</name>
+<widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="dk.dbc.mui.sporgetjeneste.jqm" version="1.0.0">
+<name short="JQM Spørg!">JQM Spørgetjeneste App</name>
 
 <description>Proto-app for spørgetjenesten</description>
 
