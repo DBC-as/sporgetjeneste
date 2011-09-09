@@ -8,6 +8,15 @@
 <icon src="icon.png" />
 <gap:splach src="splash.png" gap:role="default" />
 
+<feature name="http://api.phonegap.com/1.0/battery" required="false" />
+<feature name="http://api.phonegap.com/1.0/camera" required="false" />
+<feature name="http://api.phonegap.com/1.0/contacts" required="false" />
+<feature name="http://api.phonegap.com/1.0/file" required="false" />
+<feature name="http://api.phonegap.com/1.0/geolocation" required="false" />
+<feature name="http://api.phonegap.com/1.0/media" required="false" />
+<feature name="http://api.phonegap.com/1.0/network" required="true" />
+<feature name="http://api.phonegap.com/1.0/notification" required="false" />
+
 <preference name="permissions" value="none"/>
 <preference name="orientation" value="default" />
 
