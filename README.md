@@ -1,3 +1,12 @@
+Sample mobile app for spørgetjenesten, ready for upload to phonegap build.
+Notice this is a demo-repository, and for actual deployment
+screenshot, this description etc. should not be included.
+
+# TODO: update this readme which is out of date
+
+
+
+
 # Mobile app for Spørgetjenesten ("the question service")
 
 In order to build this application you need to check out mui (dbc-svn: skuffe/rje/mui, github: rasmuserik/mui) into the parent directory.

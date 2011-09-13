@@ -5,7 +5,7 @@
 <description>Demo App for spørgetjenesten.</description>
 
 <author href="http://www.dbc.dk/">DBC</author>
-<icon src="icon.png" />
+<icon src="icon2.png" />
 <gap:splach src="splash.png" gap:role="default" />
 
 <preference name="permissions" value="none"/>
