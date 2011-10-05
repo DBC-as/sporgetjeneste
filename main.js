@@ -100,7 +100,7 @@ function ask(mui) {
   } else if (answer === "sms" && mobile) {
     answerText = " via sms til " + mobile;
   }
-  mui.callJsonpWebservice("http://openquestion.addi.dk/0.1/", "callback", 
+  mui.callHttpWebservice("http://openquestion.addi.dk/0.2/", 
     { action: "createQuestion",
       agencyId: "150024",
       qandaServiceName: "Biblioteksvagten",
@@ -111,16 +111,19 @@ function ask(mui) {
       userAnswerPreference: answer,
       outputType: "json"
     }, function(result) {
-      if (result.createQuestionResponse.questionReceipt.$ === "Ack") {
-        mui.showPage( ["page", {title: "Sp\xf8rg biblioteket"}, 
-          ["section", 
-            ["text", "Sp\xf8rgsm\xe5let er afleveret. Du vil f\xe5 svar", deadline, answerText, "."], 
-            ["button", {fn: main}, "Nyt sp\xf8rgsm\xe5l"]]]);
-      } else {
-        mui.showPage( ["page", {title: "Sp\xf8rg biblioteket"}, 
+      try {
+        if (result.createQuestionResponse.questionReceipt.$ === "Ack") {
+          mui.showPage( ["page", {title: "Sp\xf8rg biblioteket"}, 
+            ["section", 
+              ["text", "Sp\xf8rgsm\xe5let er afleveret. Du vil f\xe5 svar", deadline, answerText, "."], 
+              ["button", {fn: main}, "Nyt sp\xf8rgsm\xe5l"]]]);
+          return;
+        } 
+      } catch(e) {
+      }
+      mui.showPage( ["page", {title: "Sp\xf8rg biblioteket"}, 
             ["text", "Noget gik desv\xe6rre galt, pr\xf8v igen"], 
             ["button", {fn: main}, "Nyt sp\xf8rgsm\xe5l"]]);
-      }
     });
 }
 
