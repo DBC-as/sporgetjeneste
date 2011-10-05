@@ -1,6 +1,6 @@
 // # Mobile User Interface
 //
-window.mui = (function(exports, global) {
+window.mui = (function(exports, global, console) {
     /*global $, jsonml, document, localStorage, setTimeout, window */
     "use strict";
     var mui = exports;
@@ -62,8 +62,8 @@ window.mui = (function(exports, global) {
     /**/ 
     // ### Utility functions for URI encoding 
     // Valid characters in URIs
-    var urichars = '1234567890abcdefghijklmnopqrstuvwxyz' 
-        + 'ABCDEFGHIJKLMNOPQRSTUVWXYZ-_~.';
+    var urichars = '1234567890abcdefghijklmnopqrstuvwxyz' + 
+            'ABCDEFGHIJKLMNOPQRSTUVWXYZ-_~.';
 
     // Workaround for buggy uri-escape in EcmaScript.
     // Escape an uri in a way that is compatible with web-clients/servers
@@ -105,10 +105,10 @@ window.mui = (function(exports, global) {
     // (which were defined before we started to use jquery)
     exports.callJsonpWebservice = 
             function(url, callbackParameterName, args, callback) {
-        url = url + "?" + encodeUrlParameters(args) + "&" 
-            + callbackParameterName + "=?";
+        url = url + "?" + encodeUrlParameters(args) + "&" + 
+                callbackParameterName + "=?";
         $.ajax(url, { dataType: "jsonp", success: callback, 
-            error: function() { callback(); } });
+            error: function() { console.log("ERROR"); callback(); } });
     };
 
     // ## Main function
@@ -144,12 +144,12 @@ window.mui = (function(exports, global) {
             };
         }
         if(!$.mobile) {
-            $("body").append('<div id="container"><div id="current"></div>' 
-                    + '<div class="contentend"></div></div>' 
-                    + '<div id="loading">Loading...</div>');
+            $("body").append('<div id="container"><div id="current"></div>' + 
+                    '<div class="contentend"></div></div>' + 
+                    '<div id="loading">Loading...</div>');
         }
         exports.main(exports);
-    };
+    }
 
     if(window.PhoneGap && window.PhoneGap.device) {
         console.log("start A");
@@ -215,9 +215,10 @@ window.mui = (function(exports, global) {
         }
 
         var result;
+        var select;
         var tag = elem[0];
         // copy the attr, to make sure we do not modify the attributes in place
-        var attr = jQuery.extend({}, elem[1]);
+        var attr = $.extend({}, elem[1]);
 
         if(tag === "page") {
             return ["div", {"data-role": "page", id: "current"},
@@ -281,9 +282,9 @@ window.mui = (function(exports, global) {
                 if(attr.label) {
                     result.push(["label", {"for": attr.id}, attr.label]);
                 } 
-                var select = childTransform(["select", attr], elem);
+                select = childTransform(["select", attr], elem);
             }  else {
-                var select = childTransform(["select", attr, 
+                select = childTransform(["select", attr, 
                         ["option", {value: ""}, attr.label]], elem);
             }
 
@@ -359,8 +360,8 @@ window.mui = (function(exports, global) {
         }
 
         onScreen = function onScreen() {
-            if ($("#more").offset() && $("#more").offset().top 
-                    < window.innerHeight + window.pageYOffset) {
+            if ($("#more").offset() && $("#more").offset().top < 
+                    window.innerHeight + window.pageYOffset) {
                 update();
             }
         };
@@ -379,4 +380,4 @@ window.mui = (function(exports, global) {
 
     // # End of file
     return mui;
-})({}, this /*global*/);
+})({}, this /*global*/, console);
